@@ -1,0 +1,43 @@
+.user-details{
+    margin:25px ;
+    border: 1px solid #dddddd;
+    width: 70vh auto;
+    background-color: white;
+}
+
+
+.data-header{
+    display: flex;
+    font-size: 17px;
+    font-weight: 400;
+
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px 0px 0px 20px;
+    width: auto;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+.data{
+    text-transform: capitalize;
+}
+
+.users-list{
+    text-align: center;
+    margin: 35px;
+    font-size: 30px;
+    font-weight: 600;
+}
+  
+

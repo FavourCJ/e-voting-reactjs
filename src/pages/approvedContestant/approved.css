@@ -1,0 +1,32 @@
+.display-approved-contestant{
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 300px;
+    padding: 20px;  
+   
+}
+
+.approve-photo-container{
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.approve-data{
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.approve-data-span{
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.approve-data-list-container{
+    display: inline-flex;
+    margin-left: 30px;
+}
+
+.approve-btn-container{
+    text-align: center;
+}

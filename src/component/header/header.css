@@ -1,0 +1,40 @@
+.header-container{
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    justify-content: space-between;
+    background-color: #301934;
+    color: white;
+    height: 55px;
+    padding: 15px 0px 35px;
+    
+}
+
+
+.logo{
+    margin-left: 40px;
+    font-size: 22px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.icon{
+    margin-right: 40px;
+    font-size: 19px;
+    display: flex;
+}
+
+.setting{
+    padding-left: 15px;
+    cursor: pointer;
+    
+}
+
+.user{
+    cursor: pointer;  
+}
+
+.user:hover, .setting:hover{
+    color: rgb(222, 221, 221);
+}

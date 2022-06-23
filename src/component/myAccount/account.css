@@ -1,0 +1,261 @@
+.profile-header{
+    margin: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.account-label{
+    font-weight: 500;
+    font-size: 19px;
+    color: grey;
+    margin: 0px 70px 30px 150px;
+    
+}
+
+.label-input-div{
+    margin-bottom: 45px;
+    display: flex;
+    margin-left: -80px;
+}
+
+.input-txt-name{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    left: 55px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+}
+
+.input-txt-email{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    left: 90px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 300px auto;
+    padding: 7px 20px;
+    height: 45px;
+}
+
+.input-txt-passNum{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    left: -15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+}
+
+.myacount-form-container{
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.input-txt-category{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    left: 60px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+}
+
+.form-application{
+    display: flex;
+    margin-left: 50px;
+}
+
+.account-footer{
+    margin-top: 50vh;
+}
+
+.Logout{
+    background-color: rgb(170, 26, 26);
+    color: whitesmoke;
+    font-weight: 600;
+    font-size: 22px;
+    width: 300px;
+    padding: 10px 0px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-left: 120px;
+    cursor: pointer;
+    border: none;
+    margin-top: -10px;
+}
+
+.Logout:hover{
+    color: white;
+    background-color: rgb(129, 9, 9);
+}
+
+.application-header{
+    margin: 0px 0px 50px 300px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.user-info-input{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    border: 1px solid grey;
+    width: 350px;
+    padding: 7px 20px;
+    height: 45px;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+
+.user-info-container{
+    margin-bottom: 20px;
+}
+
+.user-info-label{
+    font-weight: 500;
+    font-size: 19px;
+    color: grey;
+    margin-left: 30px;
+}
+
+.user-info-container{
+    display: flex;
+}
+
+.account-info{
+    margin-left: 60px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.application-data-container{
+    margin-left: 80px;
+    margin-top: 30px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.my-application{
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 900px){
+    .profile-header{
+        margin-top: 50px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        margin-left: -30px;
+    }
+    .account-label{
+        font-size: 16px;
+        margin-left: 30px;
+    }
+
+    .input-txt-name{
+       margin-left: -25px;
+        
+    }
+
+    .input-txt-email{
+        margin-left: -65px;
+        width: 300px;
+    }
+
+    .input-txt-category{
+        margin-left: -35px;
+    }
+
+    .Logout{    
+        margin-left: 20px;
+    }
+
+    .label-input-div{
+        margin-bottom: 45px;
+        display: block;
+    }
+
+    
+.label-input-div{
+    margin-left: -10px;
+    display: flex;
+}
+
+    
+.application-data-container{
+    margin-left: 50px;
+    margin-top: 60px;
+    padding: 10px;
+}
+
+.form-application{
+    display: block;
+    margin-left: 20px;
+}
+
+.myacount-form-container{
+    border: none;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.account-info{
+    margin-left: 25px;
+    margin-bottom: 20px;
+    font-size: 23px;
+    
+}
+
+.input-txt-name{
+    font-size: 16px;
+    left: 55px;
+}
+
+.input-txt-email{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    left: 90px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 300px auto;
+    padding: 7px 20px;
+    height: 45px;
+}
+
+.input-txt-passNum{
+    font-size: 16px;
+    margin-left: -20px;
+}
+
+.input-txt-category{
+    font-size: 16px;
+    left: 60px;
+}
+
+}
+
+
+

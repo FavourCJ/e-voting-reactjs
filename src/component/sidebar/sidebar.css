@@ -1,0 +1,51 @@
+.sidebar-container{
+  flex: 1;
+  height: calc(110vh - 50px);
+  background-color: #321040;
+  position: sticky;
+  top: 50px;
+  padding: 0px 30px;
+  width: auto ;
+ 
+}
+
+.menu{
+    color: white;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+}
+
+.menu:hover, 
+.menu.active{
+  width: 160px;
+  height: 49px;
+  border-radius: 12px;
+  background-color: #57296a;
+  padding: 10px 30px 5px 5px;
+}
+
+.sidebarIcon{
+ margin: 15px 8px;
+  color: white;
+  font-size: 19px;  
+}
+
+.menu-icon-link{
+  display: flex;
+}
+
+.menu-container{
+  position: absolute;
+  top: 45px;
+
+}
+
+.header{
+ 
+    font-size: 18px;
+    padding-top: 20px;
+    color: rgb(199, 198, 198);
+    font-weight: 700;
+   
+}

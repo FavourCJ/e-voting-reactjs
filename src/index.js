@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ContestantListProvider from './pages/ContextFile/ApprovedContestantContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <ContestantListProvider> 
+    <App/>
+    </ContestantListProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

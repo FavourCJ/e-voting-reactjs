@@ -1,0 +1,9 @@
+.admin-body{
+  
+  display: flex;
+  background-color: whitesmoke;
+}
+
+.content{
+    flex: 6;
+}

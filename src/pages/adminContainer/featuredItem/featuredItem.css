@@ -1,0 +1,36 @@
+.featuredItem-container{
+    margin: 25px; 
+}
+
+.contestant-user{
+    display: flex;
+    width:auto;
+    justify-content: space-between;
+}
+
+.total-users, 
+.total-contestants{
+    background-color: #301934;
+    width: 300px;
+    height: auto;
+    padding-top: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-shadow: 15px 15px 10px rgba(128, 128, 128, 0.374);
+}
+
+.user-text{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.user-contestant-display{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.chart-admin{
+    margin: 10px;
+}

@@ -1,0 +1,8 @@
+.analytics-content{
+    display: flex;
+}
+
+.chart-graph{
+    flex: 7;
+    margin: 30px;
+}

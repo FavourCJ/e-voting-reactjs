@@ -1,0 +1,10 @@
+.chart {
+    background-color: white;
+    width: 150vh auto ;
+    box-shadow: 5px 11px 15px rgba(128, 128, 128, 0.374);
+
+}
+  
+  .chartTitle {
+    margin-top: 50px;
+  }

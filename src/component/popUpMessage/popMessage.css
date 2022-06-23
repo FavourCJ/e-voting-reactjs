@@ -1,0 +1,47 @@
+.pop-container{
+    background-color: rgb(240, 239, 239);
+    height: 330px;
+    width: 450px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.pop-header{
+    font-size: 22px;
+    font-weight: 700
+}
+
+.pop-p{
+    color: rgb(226, 23, 23);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.warning-icon{
+    color: rgb(255, 8, 8);
+    font-size: 60px;
+    margin-bottom: 25px;
+}
+
+.pop-btn-yes{
+    background-color: rgb(25, 154, 25);
+    color: white;
+    font-weight: 500;border: none;
+    padding: 5px 40px;
+    margin: 10px 20px;
+    cursor: pointer;
+    font-size: 17px;
+
+}
+
+.pop-btn-no{
+    background-color: red;
+    color: white;
+    font-weight: 500;border: none;
+    padding: 5px 30px;
+    margin: 10px 20px;
+    cursor: pointer;
+    font-size: 17px;
+
+}

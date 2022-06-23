@@ -1,0 +1,76 @@
+.timer-body{
+    text-align: center;
+    flex: 7;
+    margin-top: 40px;
+}
+
+.timer-body-sider{
+    display: flex;
+}
+
+.hour-container,
+.minute-container,
+.day-container,
+.second-container{
+    padding-right: 20px;
+    color: #333;
+    font-size: 15px;
+    text-align: center;
+    font-weight:500;
+    text-transform: uppercase;
+}
+
+.set-day-container,
+.set-hour-container,
+.set-minute-container,
+.set-second-container{
+    padding-right: 20px;
+    color: black;
+    font-size: 17px; 
+}
+
+
+.timer-display-container{
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+
+}
+
+.timer-p{   
+    width: 70px;
+    height: 30px;
+    padding: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.39);
+}
+
+.timer-container{
+    margin-bottom: 25px;
+}
+
+
+.settime-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    
+}
+
+.start-date, .end-date{
+   padding: 5px 30px;
+}
+
+.set-vote-btn{
+    margin-top: 40px;
+    padding: 9px 50px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.loading{
+    flex: 7;
+}
