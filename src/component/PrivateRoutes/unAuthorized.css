@@ -1,0 +1,34 @@
+.unauthorised-access-container{
+    text-align: center;
+}
+
+.warning-icon{
+    color: red;
+    font-size: 40px;
+    margin: 40px 0px -100px 5px;
+}
+
+.unauthorised-access-header{
+    font-weight: 600;
+    font-size: 35px;
+    color: red;
+}
+
+.unauthorised-access-p{
+    font-size: 25px;
+    margin-top: -20px;
+}
+
+.unauthorised-access-link{
+    font-size: 23px;
+    margin-top: -10px;
+}
+
+.unauthorised-access-a{
+    color: blue;
+    
+}
+
+.unauthorised-access-link-link{
+    font-size: 25px;
+}

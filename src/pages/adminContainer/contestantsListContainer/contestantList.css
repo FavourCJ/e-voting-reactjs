@@ -1,0 +1,53 @@
+.contestant-list-buttons{
+    margin-left: 40px;
+    margin-bottom: -20px;
+    justify-content: space-evenly;
+}
+
+.contest-approve-button{
+    cursor: pointer;
+    background-color: rgb(12, 12, 188);
+    color: white;
+    border: none;
+    padding: 7px 30px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+.all-approve-button{
+    cursor: pointer;
+    background-color: #3d0d51;
+    color: white;
+    border: none;
+    padding: 7px 30px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+.all-approve-button:hover{
+    background-color: #321040;
+}
+
+.all-approved-contestants{
+    margin-left: 730px;
+}
+
+.contest-cancel-button{
+    cursor: pointer;
+    background-color: rgb(225, 22, 22);
+    color: white;
+    border: none;
+    padding: 7px 37px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+

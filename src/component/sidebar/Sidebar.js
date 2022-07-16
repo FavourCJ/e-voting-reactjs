@@ -1,37 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 
 {
   LineChartOutlined, 
   HomeOutlined, 
   UserAddOutlined,
   TeamOutlined,
-  ClockCircleOutlined,
+  MenuOutlined,
   MailOutlined,
   MessageOutlined,
   FormOutlined,
-  AppstoreOutlined,
   DownloadOutlined
 } from '@ant-design/icons';
 
 import "./sidebar.css";
 function Sidebar() {
+
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
-    <div className='sidebar-container'>
+    <div>
+       <button 
+            className='mobile-menu-icon'
+            onClick={() =>{
+              setShowMenu(!showMenu)
+            }}>
+          <MenuOutlined />
+          </button>
+       <div className='sidebar-container'  id ={showMenu ? "hidden": ""}>
+
         <div className='sider-menu'>
           <div>
           <h3 className='header'> Dashboard</h3>
+  
           <div className='menu-icon'>
-            <a className='menu-icon-link' href='/admin'>
-            <AppstoreOutlined
-           
-              className="sidebarIcon"
-              />
-            <li className='menu active' > Dashboard</li>   
-              </a> 
-
-            </div>
-          <div className='menu-icon'>
-            <a className='menu-icon-link' href='/home'>
+            <a className='menu-icon-link' href='/'>
             <HomeOutlined
               className="sidebarIcon"
               />
@@ -49,6 +51,7 @@ function Sidebar() {
             
             </a>         
             </div>
+          
           </div>
 
          <div>
@@ -72,13 +75,6 @@ function Sidebar() {
           </a>
           </div>
 
-          <div className='menu-icon'>
-          <a className='menu-icon-link' href='/setTimer'>
-          <ClockCircleOutlined
-             className="sidebarIcon" /> 
-          <li className='menu'> Vote Time </li>
-          </a>
-          </div>
           </div>
 
           <div className='menu-icon'>
@@ -121,7 +117,7 @@ function Sidebar() {
           </div>
            
         </div>
-
+        </div>
     </div>
   )
 }

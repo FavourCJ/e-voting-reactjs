@@ -3,6 +3,7 @@ import Footer from '../../../component/footer/Footer'
 import Header from '../../../component/header/Header';
 import Sidebar from '../../../component/sidebar/Sidebar';
 import FeaturedItem from "../featuredItem/FeaturedItem";
+import { withRouter} from "react-router-dom"
 import "./admin.css";
 function Admin() {
   return (
@@ -21,4 +22,4 @@ function Admin() {
   )
 }
 
-export default Admin
+export default withRouter(Admin)

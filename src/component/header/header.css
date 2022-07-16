@@ -11,12 +11,19 @@
     
 }
 
-
 .logo{
     margin-left: 40px;
-    font-size: 22px;
-    cursor: pointer;
+    cursor: pointer;   
+}
+
+.logo-text{
     font-weight: 500;
+    color: white;
+    font-size: 25px;
+}
+
+.logo-text:hover{
+    color: whitesmoke;
 }
 
 .icon{
@@ -25,7 +32,7 @@
     display: flex;
 }
 
-.setting{
+.bell{
     padding-left: 15px;
     cursor: pointer;
     
@@ -35,6 +42,12 @@
     cursor: pointer;  
 }
 
-.user:hover, .setting:hover{
+.user:hover, .bell:hover{
     color: rgb(222, 221, 221);
+}
+
+.header-nav-user{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }

@@ -1,54 +1,55 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ChartPage from '../chart/Chart';
 import "./featuredItem.css";
 import {userData} from "../chart/dummyData"
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../firebase-config/firebaseConfig';
+import { ContestantContext } from '../../../component/ContextFile/ContestantContext';
 
 function FeaturedItem() {
-    
-    const[registerList, setRegisterList] = useState ([]);
-    const[contestList, setContestList] = useState ([]);
+  
+    const {getRegisteredUsers, geContestants, contestList, 
+           registerList, approvedContestUsestate, getApprovedContestants} = useContext(ContestantContext)
+    const [approveCount, setApproveCount] = useState();
+    const [constesantCount, setContestantCount] = useState();
 
-
-    const registerCollectionRef = collection(db, "registered");
-    const contestCollectionRef = collection(db, "contestants");
-
-    useEffect(() =>{
-        const getRegisteredUsers = async()=>{
-          const data = await getDocs(registerCollectionRef)
-          setRegisterList (data.docs.map((doc) =>({
-            ...doc.data(), id: doc.id
-          })))
+    const checkContestantArray=()=>{
+        if(approvedContestUsestate){
+            setApproveCount(approvedContestUsestate.length);
+        }else if (!approvedContestUsestate){
+            setApproveCount(0)
         }
 
-        const geContestants = async()=>{
-            const data = await getDocs(contestCollectionRef)
-            setContestList (data.docs.map((doc) =>({
-              ...doc.data(), id: doc.id
-            })))
-          }
+        if(contestList){
+            setContestantCount(contestList.length);
+        }else if (!contestList){
+            setContestantCount(0);
+        }
+    }
 
+    useEffect(() =>{
           getRegisteredUsers();
           geContestants();
-      }, [])
-
-      const registerLength = registerList.map(( val, key)  => 
-    ( <p key = {val.uid} className='user-text'> </p>
-    ))  
+          checkContestantArray();
+          getApprovedContestants()
+          
+      }, [getApprovedContestants])    
 
   return (
     <div className='featuredItem-container'>
        
         <div className='contestant-user'>
         <div className='total-users'>
-        <p className='user-text'> { registerLength.length} </p> 
-        <p className='user-text'> Registered Users </p>
+        <p className='user-text'> {registerList.length} </p> 
+        <p className='user-text'> Registered User(s) </p>
+        </div>
+
+        <div className='total-contestants'>  
+            <p className='user-text'> {approveCount}</p>
+            <p className='user-text'> Approved Contestant(s)</p>  
         </div>
        
         <div className='total-contestants'>  
-            <p className='user-text'> {contestList.length}</p>
-            <p className='user-text'> Contestants Applied</p>  
+            <p className='user-text'> {constesantCount}</p>
+            <p className='user-text'> Applied Contestant(s)</p>  
         </div>
 
         </div>

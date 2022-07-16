@@ -1,43 +1,59 @@
 import React, { useCallback, useEffect, useContext } from "react";
 import { collection, deleteDoc, doc } from 'firebase/firestore';
-import {ApprovedUserContext} from "../../ContextFile/ApprovedContestantContext";
+import {ContestantContext} from "../../../component/ContextFile/ContestantContext";
 import { useHistory } from "react-router-dom";
 import { db } from "../../../firebase-config/firebaseConfig";
+import Header from "../../../component/header/Header";
+import Sidebar from "../../../component/sidebar/Sidebar";
+import "./contestantList.css"
+//userList.css 
 
 function ContestantsList() {
-    const {contestList, getContestants, checkboxHandleChange, selectedData} = useContext(ApprovedUserContext);
+    const {contestList, getContestants, 
+           checkboxHandleChange, selectedData,
+           getAuthUsers, setApprovedContestantsFunc} = useContext(ContestantContext);
     const contestCollectionRef = collection(db, "contestants"); 
+   
     const history = useHistory();
     
      //delete contestants
      const deleteContestant =  useCallback (async() =>{  
-      selectedData.checkedData.map(async(val) =>{
+      selectedData.map(async(val) =>{
        const deleteProductDocs = doc (contestCollectionRef, val.id);
         await deleteDoc (deleteProductDocs)
        })  
        window.location.reload(false);   
   });
-   
+ 
      //retrieving data from firestore
     useEffect(() =>{
       getContestants();
-    });
+      getAuthUsers();
+    },[]);
 
   return (
     <div>   
-       <h2 className='users-list'> List Of Contestants</h2>
+      <Header/>
+      <div className="sidebar-content">
+        <Sidebar/>
+        <div className="content">
+        <h2 className='users-list'> List Of Contestants</h2>
+       
        <div className='contestant-list-buttons'>
          
          <button 
               className = "contest-approve-button"
-              //onClick={approve.bind(this)}
-              onClick={() =>{history.push("/approved")}}           
+              onClick={
+                () =>{
+                  setApprovedContestantsFunc();
+                  history.push("/approved")
+                  }}           
               > Approve
               </button> 
 
               <span>
               <button className='contest-cancel-button' onClick={() =>{
-                deleteContestant ()
+                deleteContestant ();   
               }}> Delete</button>
               </span>
 
@@ -60,10 +76,11 @@ function ContestantsList() {
           <tr key ={key}>
             <td>
               <input 
+                 className = "checkbox-class"
                  type="checkbox" 
                  name="select" 
                  value={val.id} 
-                onChange={(e) =>{
+                 onChange={(e) =>{
                   checkboxHandleChange(e, val)
             }}/> </td>
           <td  className = "data" > {val.name} </td>
@@ -76,12 +93,10 @@ function ContestantsList() {
             </tbody>
       </table>
       </div>
-</div>
-
-<div>
-  
-        <label>Checked: </label> {JSON.stringify(selectedData)}
+    </div>
+        </div>
       </div>
+    
 </div>
  
   )

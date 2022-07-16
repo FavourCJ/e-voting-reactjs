@@ -1,41 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./userList.css"
-import { collection, getDocs } from 'firebase/firestore';
-import {db} from "../../../firebase-config/firebaseConfig";
+import { ContestantContext } from '../../../component/ContextFile/ContestantContext';
+import Header from "../../../component/header/Header"
+import Sidebar from "../../../component/sidebar/Sidebar"
+
 function UserList() {
 
-  const[userList, setUserList] = useState ([]);
-  const userCollectionRef = collection(db, "registered");
-
+  const {getRegisteredUsers, registerList} = useContext(ContestantContext)
+  
   //retrieving data from firestore
   useEffect(() =>{
-    const getUsers = async()=>{
-      const data = await getDocs(userCollectionRef)
-      setUserList (data.docs.map((doc) =>({
-        ...doc.data(), id: doc.id
-      })))
-    }
-
-    getUsers();
+    getRegisteredUsers();
   }, [])
-
-  
+ 
   return (
        <div>
-         <h2 className='users-list'> Registered Users</h2>
+        <Header/>
+        <div className='sidebar-content'>
+          <Sidebar/>
+          <div className='content'>
+          <h2 className='users-list'> Registered Users</h2>
         <div className='user-details'> 
           <div className='data-header'>
            
             <table >
               <tr>
-              <th > Full Name</th> 
+              <th > First Name</th> 
+              <th > Last Name</th> 
               <th > Category</th>     
                 </tr>
 
-                {userList.map( val => (
+                {registerList.map( (val, key) => (
 
-                <tr>
-                <td key = {val.email} className = "data"> {val.fullname} </td>
+                <tr key={key}>
+                <td className = "data"> {val.firstname} </td>
+                <td className = "data"> {val.lastname} </td>
                 <td className='data'>   {val.category} </td>
                   </tr>
                   ))}
@@ -43,7 +42,10 @@ function UserList() {
             </table>
             
             </div>        
-     </div >
+          </div >
+          </div>
+        </div>
+         
      </div>
        
   )

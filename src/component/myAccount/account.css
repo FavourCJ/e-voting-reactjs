@@ -19,6 +19,10 @@
     margin-left: -80px;
 }
 
+.voter-account-content{
+    display: flex;
+}
+
 .input-txt-name{
     font-size: 17px;
     color: black;
@@ -149,7 +153,7 @@
 
 .application-data-container{
     margin-left: 80px;
-    margin-top: 30px;
+    margin-top: 25px;
     border: 1px solid grey;
     border-radius: 5px;
     padding: 10px;
@@ -160,102 +164,91 @@
     margin-left: 10px;
 }
 
-@media only screen and (max-width: 900px){
-    .profile-header{
-        margin-top: 50px;
-        text-align: center;
-        font-size: 30px;
-        font-weight: 700;
-        margin-left: -30px;
-    }
-    .account-label{
-        font-size: 16px;
-        margin-left: 30px;
-    }
-
+@media only screen and (max-width: 426px){
     .input-txt-name{
-       margin-left: -25px;
-        
+        position: relative;
+         left: -20px;
+         width: 230px;
+     }
+ 
+     .input-txt-email{
+         margin-left: -108px;
+         width: 230px;
+         margin-top: -10px;
+     }
+ 
+     .input-txt-category{
+         margin-left: -95px;
+         width: 210px;
+     }
+
+     .myacount-form-container{
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: -10px;
+     }
+
+     .form-application{
+        display: flex;
+        margin-left: -50px;
     }
 
-    .input-txt-email{
-        margin-left: -65px;
-        width: 300px;
-    }
-
-    .input-txt-category{
-        margin-left: -35px;
-    }
-
-    .Logout{    
-        margin-left: 20px;
+    .input-txt-passNum{
+        position: absolute;
+        left: 160px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        width: 200px;
+        padding: 7px 20px;
+        height: 45px;
     }
 
     .label-input-div{
-        margin-bottom: 45px;
-        display: block;
+        margin-bottom: 35px;
+        display: flex;
+        margin-left: -80px;
     }
 
+    .Logout{
+        width: 330px;
+        padding: 10px 0px 10px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        margin-left: 63px;
+       
+    }
+
+    .profile-header{
+        margin: 30px 0px 40px -50px;
+    }
     
-.label-input-div{
-    margin-left: -10px;
-    display: flex;
-}
-
+    .voter-account-content{
+        display: block;
+    }
     
-.application-data-container{
-    margin-left: 50px;
-    margin-top: 60px;
-    padding: 10px;
-}
+    .application-data-container{
+        margin-left: 10px;
+        margin-top: 25px;
+        border: none;
+        padding: 10px;
+    }
 
-.form-application{
-    display: block;
-    margin-left: 20px;
-}
+    .application-details{
+        margin-left: -20px;
+    }
 
-.myacount-form-container{
-    border: none;
-    padding: 10px;
-    margin-top: 30px;
+    .user-info-input{
+        font-size: 17px;
+        color: black;
+        text-transform: capitalize;
+        border: 1px solid grey;
+        width: 200px;
+        padding: 7px 20px;
+        height: 45px;
+        border-radius: 5px;
+        margin-left: 30px;
+    }
 }
-
-.account-info{
-    margin-left: 25px;
-    margin-bottom: 20px;
-    font-size: 23px;
-    
-}
-
-.input-txt-name{
-    font-size: 16px;
-    left: 55px;
-}
-
-.input-txt-email{
-    font-size: 17px;
-    color: black;
-    text-transform: capitalize;
-    position: relative;
-    left: 90px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    width: 300px auto;
-    padding: 7px 20px;
-    height: 45px;
-}
-
-.input-txt-passNum{
-    font-size: 16px;
-    margin-left: -20px;
-}
-
-.input-txt-category{
-    font-size: 16px;
-    left: 60px;
-}
-
-}
-
 
 

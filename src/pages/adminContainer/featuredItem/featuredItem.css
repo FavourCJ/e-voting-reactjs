@@ -34,3 +34,13 @@
 .chart-admin{
     margin: 10px;
 }
+
+@media only screen and (max-width: 1000px){
+    .contestant-user{
+        display: block;
+    }
+
+    .total-contestants{
+        margin-top: 35px;
+    }
+}

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ContestantListProvider from './pages/ContextFile/ApprovedContestantContext';
+import ContestantProvider from './component/ContextFile/ContestantContext';
 
 ReactDOM.render(
   <React.StrictMode>
-        <ContestantListProvider> 
+        <ContestantProvider> 
     <App/>
-    </ContestantListProvider>
+    </ContestantProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

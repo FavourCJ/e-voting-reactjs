@@ -1,51 +1,34 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {Validate} from './Validate';
 import { useHistory } from 'react-router-dom';
 import {db} from "../../firebase-config/firebaseConfig";
-import {collection, doc, getDocs, query, setDoc} from "firebase/firestore"
+import {doc, setDoc} from "firebase/firestore"
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../firebase-config/firebaseConfig"
 import  "./register.css";
 
 const RegForm = () => {
+ 
   const [values, setValues] = useState ({
-    fullname: "",
+    firstname: "",
+    lastname: "",
     email: "",
     passportNum: "",
     password: "",
     category: ""
   });
-
+  
   const [error, setError] = useState({});
   const [correctData, setCorrectData] = useState (false);
-  const [userExist, setUserExist] = useState(false);
-  const [passportNumExist, setPassportNumExist] = useState();
   const [redirect, setRedirect] = useState(false);
-  
+  const [userExist, setUserExist] = useState (false);
+  const [loadData, setLoadData] = useState (false);
+   
   //const registerCollectionRef = collection(db, "registered");
   let history = useHistory();
 
   //checking if passport number in the database matches with user's input
-  const registerAuth = useCallback( async() =>{
-  const registeredCollection = query(collection(db, "registered"));
-  const querySnapshot = await getDocs(registeredCollection);
-  querySnapshot.forEach( async (doc) => {
-    //if it matches, make passportNumExist to true
-    if(doc.data().passportNum == values.passportNum){
-        setPassportNumExist(true)
-   
-    }
-    else if (doc.data().passportNum != values.passportNum) {
-      setPassportNumExist(false) 
-     }
-  })
-
-  if (passportNumExist == true){
-    setPassportNumExist("Passport number is already been used");
-    
-  }
-  //if it does not match, turn passportNumExist to false and add user's input to the database
-  else if (passportNumExist == false){
+  const registerAuth = async() =>{
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth, 
@@ -56,74 +39,79 @@ const RegForm = () => {
       await setDoc(doc(db, 'registered', user.uid), {
         email: user.email,
         uid: user.uid,
-        fullname: values.fullname,
-        passportNum: values.passportNum,
+        firstname: values.firstname,
+        lastname: values.lastname,
         category:values.category,
       }).then(() =>{
-        console.log("done");
-       setRedirect(true);
-        navigate();
+       setLoadData(true);
+       setRedirect(true);    
+      }).then(()=>{
+        if (values.category === "voter")
+      {
+        localStorage.setItem("category", "Voter");
+        history.push("/");
+      }else if (values.category === "admin") {
+        localStorage.setItem("category", "Admin");
+        history.push("/");
+      }  
+      }).then(()=>{
+        window.location.reload(false);
       })
                     
     } catch (err) {
       if (err.code == "auth/email-already-in-use"){
         setUserExist("Email is already in use. Please enter another email");
-        console.log(err)
    }  
     }
   }
-})
-
-//Insert data to database once there are no more errors
-  const handleAddUser = () =>{
-    if (Object.keys(error).length === 0 && correctData){ 
-    registerAuth();
-  }
-  }
-
+ 
 //handling submit
   const handleSubmit = (e) =>{
     e.preventDefault();
     setError(Validate(values));
     setCorrectData (true);
-     handleAddUser()
+    //Insert data to database once there are no more errors
+    if (Object.keys(error).length === 0 && correctData){ 
+      registerAuth();
+    }
      
   }
-
-  //navigating page based on user's category
-  const navigate = () =>{
-    setTimeout(() =>{
-      if (values.category === "voter")
-      {
-        history.push("/home")
-      }else {
-        history.push("/admin");
-      }
-    }, 3000)  
-}
  
   return (
+    <div>
+      
     <div className='register-container'>
-
       <div className='left-container'>
         <div className='left-text'>
-          <span>{redirect ? <span className='reg-txt'> Redirecting... <div className="loader"> </div></span> : <span> Register</span>}</span>
+          <span>{loadData ? <span className='reg-txt'> Redirecting... <div className="loader"> </div></span> : <span> Register</span>}</span>
         </div>
         <img src='/vote.svg' alt='vote' className='vote-img'/>
       </div>
       <div className='form-container'>
       <form className='form' onSubmit={handleSubmit}>
-        <label className='label'> Full Name  <span className='required'> *</span></label>
+        <label className='label'> First Name  <span className='required'> *</span></label>
+        <input 
+          className='input'
+          name='fname'
+          type= "text"
+          value={values.firstname}
+          onChange = { e=> {
+            setValues ({...values, firstname: e.target.value})
+          }}
+          />   
+          {error.firstname && <p className='error'> {error.firstname}</p>}
+
+          <label className='label'> Last Name  <span className='required'> *</span></label>
         <input 
           className='input'
           name='fullname'
           type= "text"
-          value={values.fullname}
+          value={values.lastname}
           onChange = { e=> {
-            setValues ({...values, fullname: e.target.value})
+            setValues ({...values, lastname: e.target.value})
           }}
           />   
-          {error.fullname && <p className='error'> {error.fullname}</p>}
+          {error.lastname && <p className='error'> {error.lastname}</p>}
         
         <label  className='label'> Email <span className='required'> *</span> </label>
           <input 
@@ -136,18 +124,6 @@ const RegForm = () => {
             }}/>
             {error.email && <p className='error'> {error.email}</p>}
             {userExist ? <p className='auth-error'>{userExist}</p> : <p> </p>}
-     
-        <label className='label'> Passport Number<span className='required'> *</span> </label>
-        <input
-          className='input'
-          name='passportNum'
-          type= "text"
-          value={values.passportNum}
-          onChange ={  e=>{
-            setValues ({...values, passportNum: e.target.value})
-          }}/>
-          {error.passportNum && <p className='error'> {error.passportNum}</p>}
-          {passportNumExist ? <p className='auth-error'>{passportNumExist}</p> : <p> </p>}
      
           <label className='label'> Password<span className='required'> *</span> </label>
           <input 
@@ -190,14 +166,13 @@ const RegForm = () => {
          
           <div className='form-button-container'>
           <button className='form-button' disabled={redirect}> 
-          <span>{redirect ? <span className='reg-txt'> Redirecting... <div className="reg-loader"> </div></span> : <span> Register</span>}</span>
-           </button>     
+         {loadData ? <span className='reg-txt'> Redirecting... <div className="reg-loader"> </div></span> : <span> Register</span>}
+           </button>
           </div>
           <p className='form-button-p'>Already have an account? <a className='login-link' href='/login'> Login</a></p>
       </form>
-
       </div>
-     
+      </div>
     </div>
   )
 }
