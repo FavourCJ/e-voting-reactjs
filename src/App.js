@@ -5,7 +5,6 @@ import {
   Route,
 } from "react-router-dom";
 import Admin from "./pages/adminContainer/admin/Admin"
-import MyAccount from "./component/myAccount/MyAccount"
 import LoginForm from "./pages/login/LoginForm"
 import RegForm from "./pages/regForm/RegForm"
 import ContestantForm from "./pages/usersContainer/Contest/ContestantForm"
@@ -18,21 +17,26 @@ import ApprovedContestant from "./pages/adminContainer/approvedContestant/Approv
 import Home from "./pages/usersContainer/home/Home";
 import UnAuthorized from "./component/PrivateRoutes/UnAuthorized";
 import PrivateRoute from "./component/PrivateRoutes/PrivateRoute";
-import VoterAccount from "./pages/usersContainer/VoterAccount/VoterAccount";
 import AdminAccount from "./pages/adminContainer/AdminAccount/AdminAccount";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config/firebaseConfig";
+import MyAccount from "./component/myAccount/MyAccount";
 
 function App() {
   const getUserCategory = window.localStorage.getItem("category");
-
+ 
   const checkUserAuth = ()=>{
-    if (!auth){
-      window.localStorage.setItem('category', "no-user");
-    }
+    onAuthStateChanged (auth, (user) =>{
+      if (!user){
+        window.localStorage.setItem('category', "no-user");
+      }
+    })
+   
   }
 
   useEffect(()=>{
     checkUserAuth();
+   
   },[])
 
   return (
@@ -66,8 +70,7 @@ function App() {
           //User with admin role or category are not authorized to access these pages
           <AdminUnauthorisedRoute path= "/contest" component = {ContestantForm}/>
           <AdminUnauthorisedRoute path= "/home" component = {Home}/>
-          <AdminUnauthorisedRoute path= "/my-voter-profile" component = {VoterAccount}/>
-        
+         
         
           //User with voter role or category are not authorized to access these pages
           <VoterUnauthorisedRoute path= "/analytics" component = {Analytics}/>      
@@ -77,6 +80,7 @@ function App() {
 
           <VoterUnauthorisedRoute path = "/approved" component = {ApprovedContestant}/>
           <PrivateRoute path = "/unauthorised" component = {UnAuthorized}/>
+          <PrivateRoute path= "/my-voter-profile" component = {MyAccount}/>
           
 
            </Switch>

@@ -34,6 +34,12 @@ if (!values.password){
     error.password = "Password must be atleast 8 characters and less than 13";
   }
 
+  if (!values.confirmP){
+    error.confirmP = "Pasword is required"
+  }else if (values.confirmP != values.password){
+    error.confirmP = "Password does not match";
+  }
+
 if(!values.category){
     error.category = "Select one category";
 }

@@ -1,31 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import { ContestantContext } from "../../../component/ContextFile/ContestantContext";
 import "./approved.css";
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { useHistory } from "react-router-dom";
 
 function ApprovedContestant() {
-    const {approvedContestUsestate, contestApprovedHook, getApprovedContestants} = useContext(ContestantContext);
-   
-    const responsive = {
-      superLargeDesktop: {
-        // the naming can be any, depends on you.
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5
-      },
-      desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2
-      },
-      mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1
+    const {approvedContestUsestate, getApprovedContestants, vote} = useContext(ContestantContext);
+    let history = useHistory()
+
+    const voteFunc = async(val)=>{
+      if(localStorage.getItem("category") == "Admin"){
+        history.push("/unauthorised");
+      }else {
+        vote(val);
       }
-    };
+     
+    }
   
     useEffect(()=>{
       getApprovedContestants();
@@ -52,6 +42,7 @@ function ApprovedContestant() {
       <div className="approve-btn-container">
       <button
           className='vote'
+          onClick={()=>{voteFunc(val)}}
           > Vote</button>
           </div>
         </div> 

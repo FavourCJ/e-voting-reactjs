@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { auth, db } from '../../firebase-config/firebaseConfig';
 import "../regForm/register.css";
 import {validateLogin} from "../regForm/Validate";
+//register.css file
 
 function LoginForm() {
  
@@ -12,6 +13,8 @@ function LoginForm() {
   const [correctData, setCorrectData] = useState (false);
   const [authError, setAuthError] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [loadData, setLoadData] = useState (false);
+  const [disable, setDisable] = useState(false)
   const [loginValues, setLoginValues] = useState ({
     loginEmail: "",
     loginPassword: "",
@@ -48,15 +51,23 @@ function LoginForm() {
         ).then (() =>{
           //calling logged user's navigation function
             setRedirect(true);
-            navigateLoggedUser();             
+            setLoadData(true);    
+                      
+        }).then(()=>{
+          setTimeout(() =>{
+            navigateLoggedUser();   
+        }, 3000);
         })
     } catch (err) {
       if(err.code === "auth/wrong-password"){
-          setAuthError("Wrong combination")
+          setAuthError("Wrong combination");
+          setDisable(false)
       }else if(err.code === "auth/too-many-requests"){
          setAuthError("Access to this account has been temporarily disable due to too many failed login attempts. Please try again later")
+         setDisable(false)
       }else if(err.code === "auth/user-not-found"){
           setAuthError("User not found")
+          setDisable(false)
       }
   }
   };
@@ -66,6 +77,7 @@ function LoginForm() {
   useEffect (() => {
     if (Object.keys(loginError).length === 0 && correctData)
     {     
+      setDisable(true)
       logInWithEmailAndPassword();
      
     }
@@ -121,9 +133,21 @@ function LoginForm() {
           <p className='error'> </p>
           {authError ? <p className='auth-error'>{authError}</p> : <p> </p>}
           <div className='form-button-container'> 
-          <button className='form-button' disabled={redirect}> 
-          <span>{redirect ? <span className='reg-txt'> Redirecting... <div className="reg-loader"> </div></span> : <span> Login</span>}</span>
-           </button>     
+          {loadData ?  <button className='redirect-btn'>Redirecting
+              <span className="spinner-container">
+                <p className="loading-spinner">
+                </p>
+                </span>
+                </button> 
+
+                :
+
+                <button 
+                 className={ disable ?"disable-sign-up-btn" : 'form-button'  }
+                 disabled = {disable}>
+                 Submit</button>
+
+            }    
           </div>
           <p className='form-button-p'>Do not have an account? <a href='/register' className='login-link'> Register</a></p>
           

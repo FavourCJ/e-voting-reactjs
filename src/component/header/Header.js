@@ -20,6 +20,7 @@ function Header() {
     }else  if (userCategory === "no-user"){
       history.push("/login")
     }
+    window.location.reload(false);
   }
     const menu = (
         <Menu>
@@ -40,7 +41,7 @@ function Header() {
   return (
     <div className='header-container'> 
     <div className='logo'> <span > 
-      <a href='https://favourcj-portfolio.firebaseapp.com/' className='logo-text' target= "_blank">FavourCJ</a>
+      <a href='https://my-favourcj-portfolio.web.app/' className='logo-text' target= "_blank">FavourCJ</a>
       </span></div>
       <div className='icon'>
      

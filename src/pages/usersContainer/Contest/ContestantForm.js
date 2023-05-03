@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useCallback, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import "./contestant.css";
 import { Grid,Paper } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import {validateContestant} from "./ValidateContestant";
 import {db} from "../../../firebase-config/firebaseConfig";
-import {collection, getDocs, query, setDoc, doc} from "firebase/firestore"
+import {collection, setDoc, doc} from "firebase/firestore"
 import { ContestantContext } from '../../../component/ContextFile/ContestantContext';
 
 function ContestantForm() {
 
-  const {currentRegUser, userDetails, getCurrentUserData, getAuthUsers, userAlreadyApplied} = useContext(ContestantContext);
-  const [ userExist, setUserExist] = useState();
-  const [alreadyApplied, setAlreadyApplied] = useState();
+  const { userDetails, getCurrentUserData, getAuthUsers, userAlreadyApplied, currentRegUser} = useContext(ContestantContext);
   const paperStyle={marginTop:100, height:'90vh auto',width:600, margin:"20px auto"};
   const getContestSuccess = localStorage.getItem("contest-success");
   const [contestValue, setContestValue] = useState ({
@@ -25,6 +23,8 @@ function ContestantForm() {
   const [correctData, setCorrectData] = useState (false);
   const [contestError, setContestError] = useState ({});
   const [success, setSuccess] = useState(false);
+  const [disable, setDisable] = useState(false)
+  const [loadData, setLoadData] = useState (false);
   let history = useHistory();
   const contestCollectionRef = collection(db, "contestants");
   const inputRef = useRef(null);
@@ -42,18 +42,21 @@ function ContestantForm() {
         points: 0,
   
     }).then(() =>{
+      setLoadData(true);    
       setSuccess(true);
+      
+    }).then(()=>{
       setTimeout(() =>{
         history.push("/home")
     }, 3000);
-    })  
+    }) 
   }
 
     useEffect(()=>{
       getCurrentUserData();
       getAuthUsers();
       userAlreadyApplied();
-    }, [getAuthUsers])
+    }, [currentRegUser])
 
 //handling submit
   const handleSubmit = (e) =>{
@@ -63,6 +66,7 @@ function ContestantForm() {
      //Insert data to database once there are no more errors
     if (Object.keys(contestError).length === 0 && correctData)
     {
+     setDisable(true)
      addContestant();
     }
   }
@@ -75,6 +79,9 @@ function ContestantForm() {
 
          <form className='form-input' onSubmit={handleSubmit}>      
         <h2 className='contest-header'> Contestant Form</h2>
+        {getContestSuccess === "true" 
+           ? <p className='already-applied' > Already Applied</p> 
+            : ""}
         <div className='input-container'>
         <label className='contest-label' > Name </label>
         {
@@ -142,9 +149,7 @@ function ContestantForm() {
           className='contest-input-disable'
           name='email'
           > {userDetails.email} </p>
-          {alreadyApplied ? <p className='auth-error'>{alreadyApplied}</p> : <p> </p>}
-       </div>
-        
+       </div>  
          
         {
           getContestSuccess === "true" ?  
@@ -286,7 +291,26 @@ function ContestantForm() {
 
            {getContestSuccess === "true" 
            ? <button className='contest-applied' disabled = {true}> Already Applied</button> 
-            :  <button className='contest-btn' > Submit</button> }
+            : 
+            <>
+            {loadData ?  <button className='redirect-btn'>Redirecting
+              <span className="spinner-container">
+                <p className="loading-spinner">
+                </p>
+                </span>
+                </button> 
+
+                :
+
+                <button 
+                 className={ disable ?"disable-sign-up-btn" : 'contest-btn'  }
+                 disabled = {disable}>
+                 Submit</button>
+
+            }
+            </>
+            
+            }
            
       </form>
     </div>

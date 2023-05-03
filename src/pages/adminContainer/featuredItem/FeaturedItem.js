@@ -7,31 +7,18 @@ import { ContestantContext } from '../../../component/ContextFile/ContestantCont
 function FeaturedItem() {
   
     const {getRegisteredUsers, geContestants, contestList, 
-           registerList, approvedContestUsestate, getApprovedContestants} = useContext(ContestantContext)
-    const [approveCount, setApproveCount] = useState();
-    const [constesantCount, setContestantCount] = useState();
-
-    const checkContestantArray=()=>{
-        if(approvedContestUsestate){
-            setApproveCount(approvedContestUsestate.length);
-        }else if (!approvedContestUsestate){
-            setApproveCount(0)
-        }
-
-        if(contestList){
-            setContestantCount(contestList.length);
-        }else if (!contestList){
-            setContestantCount(0);
-        }
-    }
-
+           registerList, approvedContestUsestate, 
+           getApprovedContestants, getAdmin, adminList,
+           currentRegUser,
+        } = useContext(ContestantContext)
+   
     useEffect(() =>{
           getRegisteredUsers();
           geContestants();
-          checkContestantArray();
           getApprovedContestants()
+          getAdmin();
           
-      }, [getApprovedContestants])    
+      }, [currentRegUser])    
 
   return (
     <div className='featuredItem-container'>
@@ -43,12 +30,12 @@ function FeaturedItem() {
         </div>
 
         <div className='total-contestants'>  
-            <p className='user-text'> {approveCount}</p>
+            <p className='user-text'> {approvedContestUsestate.length}</p>
             <p className='user-text'> Approved Contestant(s)</p>  
         </div>
        
         <div className='total-contestants'>  
-            <p className='user-text'> {constesantCount}</p>
+            <p className='user-text'> {contestList.length}</p>
             <p className='user-text'> Applied Contestant(s)</p>  
         </div>
 
@@ -58,7 +45,24 @@ function FeaturedItem() {
             <ChartPage data={userData} title="User Analytics" grid dataKey="Active User"/>
         </div>
 
-        <div>
+        <div className='featured-item-admin-list'>
+            <h2>Admin List</h2>
+            <table className='featuredItem-admin-table'>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            {adminList.map((val)=>{
+                return(
+                    <tr key={val.id}>
+                <td>{val.firstname}</td>
+                <td>{val.lastname}</td>
+                <td>{val.email}</td>
+            </tr>
+                )
+            })}
+            </table>
         
         </div>
        

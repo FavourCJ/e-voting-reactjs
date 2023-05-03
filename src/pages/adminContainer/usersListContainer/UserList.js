@@ -24,6 +24,7 @@ function UserList() {
           <div className='data-header'>
            
             <table >
+              <tbody>
               <tr>
               <th > First Name</th> 
               <th > Last Name</th> 
@@ -38,7 +39,7 @@ function UserList() {
                 <td className='data'>   {val.category} </td>
                   </tr>
                   ))}
-            
+            </tbody>
             </table>
             
             </div>        

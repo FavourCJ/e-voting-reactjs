@@ -9,23 +9,34 @@ import  "./register.css";
 
 const RegForm = () => {
  
+  const [disable, setDisable] = useState(false)
   const [values, setValues] = useState ({
     firstname: "",
     lastname: "",
     email: "",
     passportNum: "",
     password: "",
+    confirmP: "",
     category: ""
   });
   
   const [error, setError] = useState({});
   const [correctData, setCorrectData] = useState (false);
-  const [redirect, setRedirect] = useState(false);
   const [userExist, setUserExist] = useState (false);
   const [loadData, setLoadData] = useState (false);
    
   //const registerCollectionRef = collection(db, "registered");
   let history = useHistory();
+  const navigateLoggedUser = ()=>{
+    if (values.category === "voter")
+      {
+        localStorage.setItem("category", "Voter");
+        history.push("/");
+      }else if (values.category === "admin") {
+        localStorage.setItem("category", "Admin");
+        history.push("/");
+      }  
+  }
 
   //checking if passport number in the database matches with user's input
   const registerAuth = async() =>{
@@ -43,21 +54,13 @@ const RegForm = () => {
         lastname: values.lastname,
         category:values.category,
       }).then(() =>{
-       setLoadData(true);
-       setRedirect(true);    
+       setLoadData(true);    
       }).then(()=>{
-        if (values.category === "voter")
-      {
-        localStorage.setItem("category", "Voter");
-        history.push("/");
-      }else if (values.category === "admin") {
-        localStorage.setItem("category", "Admin");
-        history.push("/");
-      }  
-      }).then(()=>{
-        window.location.reload(false);
-      })
-                    
+        setTimeout(async()=>{
+          navigateLoggedUser();
+          window.location.reload(false);
+        }, 3000)
+      })           
     } catch (err) {
       if (err.code == "auth/email-already-in-use"){
         setUserExist("Email is already in use. Please enter another email");
@@ -72,6 +75,7 @@ const RegForm = () => {
     setCorrectData (true);
     //Insert data to database once there are no more errors
     if (Object.keys(error).length === 0 && correctData){ 
+      setDisable(true)
       registerAuth();
     }
      
@@ -136,6 +140,18 @@ const RegForm = () => {
         }}    
         />
         {error.password && <p className='error'> {error.password}</p>}
+
+        <label className='label'>Confirm Password<span className='required'> *</span> </label>
+          <input 
+        className='input' 
+        type= "password"
+        name='password'
+        value={values.confirmP}
+        onChange = {e => {
+          setValues ({...values, confirmP: e.target.value})
+        }}    
+        />
+        {error.confirmP && <p className='error'> {error.confirmP}</p>}
         
           <label className='label'> Category<span className='required'> *</span> </label>
            
@@ -158,16 +174,28 @@ const RegForm = () => {
           onChange = { e=>{
             setValues ({...values, category: e.target.value})
           }}
-          />Admin
+          /><span className='voter'> Admin</span>
           
           </div>
           <br/>
           {error.category && <p className='error'> {error.category}</p>} 
          
           <div className='form-button-container'>
-          <button className='form-button' disabled={redirect}> 
-         {loadData ? <span className='reg-txt'> Redirecting... <div className="reg-loader"> </div></span> : <span> Register</span>}
-           </button>
+          {loadData ?  <button className='redirect-btn'>Redirecting
+              <span className="spinner-container">
+                <p className="loading-spinner">
+                </p>
+                </span>
+                </button> 
+
+                :
+
+                <button 
+                 className={ disable ?"disable-sign-up-btn" : 'sign-up-btn'  }
+                 disabled = {disable}>
+                 Sign Up</button>
+               
+            }
           </div>
           <p className='form-button-p'>Already have an account? <a className='login-link' href='/login'> Login</a></p>
       </form>

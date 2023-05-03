@@ -35,6 +35,25 @@
     margin: 10px;
 }
 
+.featured-item-admin-list{
+    margin-top: 70px;
+}
+
+.featuredItem-admin-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 15px 15px 10px rgba(128, 128, 128, 0.374);
+    background-color: white;
+  }
+  
+  .featuredItem-admin-table td, .featuredItem-admin-table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 15px;
+  }
+
+
 @media only screen and (max-width: 1000px){
     .contestant-user{
         display: block;

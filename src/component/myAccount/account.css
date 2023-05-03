@@ -14,7 +14,7 @@
 }
 
 .label-input-div{
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     display: flex;
     margin-left: -80px;
 }
@@ -28,7 +28,6 @@
     color: black;
     text-transform: capitalize;
     position: relative;
-    left: 55px;
     border: 1px solid grey;
     border-radius: 5px;
     width: 250px;
@@ -39,9 +38,9 @@
 .input-txt-email{
     font-size: 17px;
     color: black;
-    text-transform: capitalize;
+    text-transform: lowercase;
     position: relative;
-    left: 90px;
+    left: 46px;
     border: 1px solid grey;
     border-radius: 5px;
     width: 300px auto;
@@ -62,19 +61,12 @@
     height: 45px;
 }
 
-.myacount-form-container{
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 30px;
-}
-
 .input-txt-category{
     font-size: 17px;
     color: black;
     text-transform: capitalize;
     position: relative;
-    left: 60px;
+    left: 15px;
     border: 1px solid grey;
     border-radius: 5px;
     width: 250px;
@@ -149,6 +141,7 @@
     margin-left: 60px;
     margin-bottom: 20px;
     font-size: 25px;
+    text-align: center;
 }
 
 .application-data-container{
@@ -164,6 +157,98 @@
     margin-left: 10px;
 }
 
+.my-account-application-container{
+    display: flex;
+    margin-top: 40px;
+}
+
+.my-account-application-section{
+    margin-left: 300px;
+}
+
+.my-account-application-header{
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.my-account-application-label{
+    font-weight: 500;
+    font-size: 19px;
+    color: grey;
+    margin-right: 20px;
+}
+
+.my-account-application-txt-fname{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+    margin-left: 30px;
+}
+
+.my-account-application-txt-lname{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+    margin-left: 30px;
+}
+
+.my-account-application-txt-points{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+    margin-left: 73px;
+}
+
+.my-account-application-txt-party{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+    margin-left: 7px;
+}
+
+.my-account-application-txt-office{
+    font-size: 17px;
+    color: black;
+    text-transform: capitalize;
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    padding: 7px 20px;
+    height: 45px;
+    margin-left: 70px;
+}
+
+.do-not-have-application{
+    color: red;
+    font-weight: 500;
+    font-size: 20px;
+    font-style: italic;
+}
 @media only screen and (max-width: 426px){
     .input-txt-name{
         position: relative;
@@ -180,13 +265,6 @@
      .input-txt-category{
          margin-left: -95px;
          width: 210px;
-     }
-
-     .myacount-form-container{
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        margin-top: -10px;
      }
 
      .form-application{

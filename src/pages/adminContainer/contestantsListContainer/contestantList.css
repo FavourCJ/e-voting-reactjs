@@ -50,4 +50,6 @@
     text-transform: uppercase;
 }
 
-
+.table-data-disable:disabled{
+    background-color: red;
+}

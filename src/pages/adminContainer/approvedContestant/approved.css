@@ -3,6 +3,7 @@
     border-radius: 5px;
     width: 300px;
     padding: 20px;  
+    margin-bottom: 40px;
    
 }
 
@@ -45,5 +46,46 @@
     font-size: 21px;
     margin-top: 30px;
 }
+
+.vote{
+    top: 0;
+    font-size: 17px;
+    background-color: rgb(71, 6, 96);
+    color: white;
+    padding: 6px 20px;
+    width: 250px;
+    border-radius: 3px;
+    font-weight: 500;  
+    border: none;
+    cursor: pointer;
+    height: 45px;
+    text-transform: uppercase;
+}
+
+
+.vote:disabled {
+    color: black;
+    background-color: rgb(193, 192, 192);
+    cursor: no-drop;
+}
+
+
+
+.vote:hover{
+    color: white;
+    background-color: rgb(50, 5, 68);
+
+}
+
+.voter-load-icon{
+    font-size: 50px;
+}
+
+.load-icon-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
 
 

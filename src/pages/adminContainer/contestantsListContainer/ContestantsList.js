@@ -1,36 +1,34 @@
-import React, { useCallback, useEffect, useContext } from "react";
-import { collection, deleteDoc, doc } from 'firebase/firestore';
+import React, { useEffect, useContext, useState } from "react";
 import {ContestantContext} from "../../../component/ContextFile/ContestantContext";
 import { useHistory } from "react-router-dom";
-import { db } from "../../../firebase-config/firebaseConfig";
 import Header from "../../../component/header/Header";
 import Sidebar from "../../../component/sidebar/Sidebar";
 import "./contestantList.css"
 //userList.css 
 
 function ContestantsList() {
+  
     const {contestList, getContestants, 
-           checkboxHandleChange, selectedData,
-           getAuthUsers, setApprovedContestantsFunc} = useContext(ContestantContext);
-    const contestCollectionRef = collection(db, "contestants"); 
+           checkboxHandleChange,getAuthUsers, 
+           setApprovedContestantsFunc, deleteContestant, } = useContext(ContestantContext);
    
     const history = useHistory();
+    const [displayMsg, setDisplayMsg] = useState(false)
     
-     //delete contestants
-     const deleteContestant =  useCallback (async() =>{  
-      selectedData.map(async(val) =>{
-       const deleteProductDocs = doc (contestCollectionRef, val.id);
-        await deleteDoc (deleteProductDocs)
-       })  
-       window.location.reload(false);   
-  });
- 
+  const checkContestListLength = ()=>{
+    if (contestList.length==0){
+      setDisplayMsg(true)
+    }
+  }
+
      //retrieving data from firestore
     useEffect(() =>{
       getContestants();
       getAuthUsers();
+      checkContestListLength();
     },[]);
 
+   
   return (
     <div>   
       <Header/>
@@ -60,36 +58,45 @@ function ContestantsList() {
        </div>
     <div className='user-details'>     
     <div className='data-header'> 
-    
+   
       <table >
       <tbody>
         <tr>
           <th className='c'> Select</th>
         <th > First Name</th> 
-        <th > Surname</th>
+        <th > Last Name</th>
         <th > Political Office</th>
         <th > Political Party</th>    
           </tr>
 
+          { displayMsg ? 
+          <>
           {contestList.map( (val, key ) => (
             
-          <tr key ={key}>
-            <td>
-              <input 
-                 className = "checkbox-class"
-                 type="checkbox" 
-                 name="select" 
-                 value={val.id} 
-                 onChange={(e) =>{
-                  checkboxHandleChange(e, val)
-            }}/> </td>
-          <td  className = "data" > {val.name} </td>
-          <td  className = "data" > {val.surname} </td>
-          <td  className = "data" >   {val.Office} </td>
-          <td className = "data" >   {val.politicalparty} </td>
-            </tr>
-            ))}
+            <tr key ={key} className = "table-data-disable" >
+             
+              <td>
+                <input 
+                   className = "checkbox-class"
+                   type="checkbox" 
+                   name="select" 
+                   value={val.id} 
+                   onChange={(e) =>{
+                    checkboxHandleChange(e, val)
+              }}/> </td>
+            <td  className = "data" > {val.name} </td>
+            <td  className = "data" > {val.surname} </td>
+            <td  className = "data" >   {val.Office} </td>
+            <td className = "data" >   {val.politicalparty} </td>
+              </tr>
+              ))}
+          </>
+          
+       : 
+          <h2>No new application</h2>
+          }
 
+          
             </tbody>
       </table>
       </div>
