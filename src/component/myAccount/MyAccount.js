@@ -10,11 +10,13 @@ function MyAccount() {
   const {getCurrentUserData, userDetails, currentRegUser, getAuthUsers, logout} = useContext(ContestantContext);
    const [isAdmin, setIsAdmin] = useState(false);
    const [appDetails, setAppDetails ] = useState([]);
-   const [notHere, setNotHere] = useState(false)
+   const [notHere, setNotHere] = useState(false);
+   const getUserCategory = window.localStorage.getItem("category");
 
    const displayDetails = async() =>{
     const specificData = query(collection(db, "approvedContestants"), where ("uid", "==", currentRegUser.uid));
     const querySnapshot = await getDocs(specificData);
+    
   querySnapshot.forEach((doc) => {
     if(doc.data().uid === currentRegUser.uid){
       setAppDetails(doc.data()); 
@@ -26,11 +28,11 @@ function MyAccount() {
 }
 
 const checkCurrentUserCategory = async()=>{
-  if (userDetails.category === "admin"){
+  if (getUserCategory === "Admin"){
     setIsAdmin(true);
-  }else if (userDetails.category === "voter"){
+  }else if (getUserCategory === "Voter"){
     setIsAdmin(false);
-    displayDetails()    
+    displayDetails();    
  }
 
    }
@@ -90,9 +92,8 @@ const checkCurrentUserCategory = async()=>{
     </div> 
 
     <div className='my-account-application-section'>
-    {isAdmin ? "" : 
-            <>
-            <div>
+    {isAdmin ? "": <>
+            <div className='my-account-approve-container'>
               <h2 className='my-account-application-header'>My approved application</h2>
               {notHere ? <p className='do-not-have-application'>You do not have any approved application</p> : 
                <>
@@ -125,7 +126,7 @@ const checkCurrentUserCategory = async()=>{
               
               
             </div>
-            </>
+            </> 
             
             }  
     </div>

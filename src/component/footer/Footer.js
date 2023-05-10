@@ -8,7 +8,7 @@ function Footer() {
         <p className='footer-text'> &copy; Designed and created by Favour Chapp-Jumbo</p>
         <div className='social'>
              <FacebookFilled className = "social-icon"/>
-             <LinkedinFilled className = "social-icon"/>
+             <a href = "https://www.linkedin.com/in/favourchapp-jumbo/" className='social-icon-link' target = "_blank"><LinkedinFilled className = "social-icon"/> </a>
              <TwitterSquareFilled className = "social-icon"/>
              <InstagramFilled className = "social-icon"/>
              </div>

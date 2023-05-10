@@ -15,6 +15,12 @@
     margin: 10px;
     cursor: pointer;
 }
+
 .social-icon:hover{
     color: grey;
+}
+
+.social-icon-link{
+    text-decoration: none;
+    color: black;
 }

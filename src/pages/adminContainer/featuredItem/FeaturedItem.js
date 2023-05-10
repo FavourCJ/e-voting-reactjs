@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ChartPage from '../chart/Chart';
 import "./featuredItem.css";
 import {userData} from "../chart/dummyData"

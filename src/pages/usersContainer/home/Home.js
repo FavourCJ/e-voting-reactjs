@@ -5,6 +5,7 @@ import Timer from "../../adminContainer/timerUser/Timer"
 import { withRouter} from "react-router-dom"
 import "./home.css";
 import VoterApprovesContestant from '../voterApprovedContestant/VoterApprovesContestant';
+import Footer from "../../../component/footer/Footer"
 
 function Home() {
 
@@ -32,7 +33,9 @@ function Home() {
                   <VoterApprovesContestant/>
      
                         {popMessage && <PopUpMessage setPopMessage={setPopMessage} closeMessage = {setPopMessage}/>}
-                      </div>   
+                      </div>  
+
+                      <Footer/> 
                     
                </div>
         

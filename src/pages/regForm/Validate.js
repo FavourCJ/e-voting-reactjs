@@ -12,8 +12,8 @@ export const Validate = (values) =>{
 
 if (!values.lastname){
   error.lastname = "Last name is required"
-}else if (!/^[a-zA-Z ]*$/.test(values.lastname)){
-  error.lastname = "Name should not contain number or any special character"
+}else if (!/^[a-zA-Z- ]*$/.test(values.lastname)){
+  error.lastname = "Name should not contain number or any special character except hyphen (-)"
 }else if(values.lastname.length < 2){
 error.lastname = "Last name should be atleast 2"
 }
