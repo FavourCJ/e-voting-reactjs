@@ -4,6 +4,8 @@ import "./account.css";
 import { ContestantContext } from '../ContextFile/ContestantContext';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase-config/firebaseConfig';
+import Header from '../header/Header';
+import Footer from "../footer/Footer"
 
 function MyAccount() {
 
@@ -43,14 +45,18 @@ const checkCurrentUserCategory = async()=>{
     getAuthUsers(); 
      checkCurrentUserCategory();
      displayDetails();
+     console.log(appDetails)
   },[currentRegUser])
 
     let history = useHistory();
 
     
   return (
-    <div className='my-account-application-container'>
+    <div> 
+       <Header/>
       
+    <div className='my-account-application-container'>
+     
       <div className='user-detail-container'> 
 
         <div className='form-application'>
@@ -95,8 +101,7 @@ const checkCurrentUserCategory = async()=>{
     {isAdmin ? "": <>
             <div className='my-account-approve-container'>
               <h2 className='my-account-application-header'>My approved application</h2>
-              {notHere ? <p className='do-not-have-application'>You do not have any approved application</p> : 
-               <>
+              {notHere ?  <>
                 <div className='label-input-div'>
               <label className='my-account-application-label'> First Name</label>
               <p className='my-account-application-txt-fname'>{appDetails.firstname}</p>
@@ -121,7 +126,8 @@ const checkCurrentUserCategory = async()=>{
               <label className='my-account-application-label'> Points</label>
               <p className='my-account-application-txt-points'>{appDetails.points}</p>
             </div> 
-               </>
+               </> : <p className='do-not-have-application'>You do not have any approved application</p>
+              
               }
               
               
@@ -131,6 +137,8 @@ const checkCurrentUserCategory = async()=>{
             }  
     </div>
     </div> 
+    <Footer/>
+    </div>
 
   )
 }

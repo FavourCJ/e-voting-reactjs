@@ -13,10 +13,8 @@ function Header() {
   const history = useHistory();
   
   const navUser =()=>{
-    if (userCategory === "Voter"){
-      history.push("/my-voter-profile")
-    }else  if (userCategory === "Admin"){
-      history.push("/my-admin-account")
+    if (userCategory === "Voter" || userCategory === "Admin"){
+      history.push("/my-account")
     }else  if (userCategory === "no-user"){
       history.push("/login")
     }

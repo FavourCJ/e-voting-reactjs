@@ -17,7 +17,6 @@ import ApprovedContestant from "./pages/adminContainer/approvedContestant/Approv
 import Home from "./pages/usersContainer/home/Home";
 import UnAuthorized from "./component/PrivateRoutes/UnAuthorized";
 import PrivateRoute from "./component/PrivateRoutes/PrivateRoute";
-import AdminAccount from "./pages/adminContainer/AdminAccount/AdminAccount";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config/firebaseConfig";
 import MyAccount from "./component/myAccount/MyAccount";
@@ -76,11 +75,10 @@ function App() {
           <VoterUnauthorisedRoute path= "/analytics" component = {Analytics}/>      
           <VoterUnauthorisedRoute path="/user" component = {UserList}/>    
           <VoterUnauthorisedRoute path= "/contestants" component = {ContestantsList}/>
-          <VoterUnauthorisedRoute path= "/my-admin-account" component = {AdminAccount}/>
-
+          
           <VoterUnauthorisedRoute path = "/approved" component = {ApprovedContestant}/>
           <PrivateRoute path = "/unauthorised" component = {UnAuthorized}/>
-          <PrivateRoute path= "/my-voter-profile" component = {MyAccount}/>
+          <PrivateRoute path= "/my-account" component = {MyAccount}/>
           
 
            </Switch>
